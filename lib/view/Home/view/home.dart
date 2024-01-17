@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
               
                   image: DecorationImage(
                       // colorFilter: ColorFilter.mode(Color.fromARGB(255, 243, 236, 236), BlendMode.color),
-                      image: isLoading ? Image('') : NetworkImage('$imageURL${movie.first.poster}'),
+                      image: NetworkImage('$imageURL${movie.first.poster}'),
                       fit: BoxFit.cover),),
               child: Container(
                 height: MediaQuery.of(context).size.height,

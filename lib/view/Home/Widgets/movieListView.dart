@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_sample/core/viewModels/movieVm.dart';
@@ -20,29 +21,25 @@ class MovieListView extends StatelessWidget {
           itemCount: movies.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: isLoading
-                ? Container(
-                    height: 240.h,
-                    width: 180.w,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(22.r),
-                    ),
-                    child: Text('data'),
-                  ).redacted(context: context, redact: true, configuration: RedactedConfiguration())
-                : Container(
-                    height: 240.h,
-                    width: 180.w,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                        borderRadius: BorderRadius.circular(22.r),
-                        image: DecorationImage(
-                            image:
-                                NetworkImage('$imageURL${movies[index].poster}'),
-                            fit: BoxFit.cover)),
-                  ),
-          ),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: isLoading
+                  ? CachedNetworkImage(
+                      imageUrl: '$imageURL${movies[index].poster}',
+                      placeholder: (context, url) => Container(
+                        height: 240.h,
+                        width: 180.w,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(22.r),
+                        ),
+                        child: Text('data'),
+                      ).redacted(
+                        context: context,
+                        redact: true,
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    )
+                  : null),
         ),
       ),
     );
