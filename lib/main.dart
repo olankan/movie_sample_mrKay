@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(430, 930),
-      builder: (context, child) => MaterialApp(
-        title: 'Flutter Demo',
+      builder: (context, child) => const MaterialApp(
+        title: 'Movie',
         home: Home(),
       ),
     );
