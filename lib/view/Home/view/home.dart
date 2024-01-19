@@ -6,9 +6,6 @@ import 'package:movie_sample/core/res/constants.dart';
 import 'package:movie_sample/core/viewModels/movieVm.dart';
 import 'package:movie_sample/services/fetchMovieService.dart';
 import 'package:movie_sample/view/Home/Widgets/movieListView.dart';
-import 'package:redacted/redacted.dart';
-
-import '../Redactive Widgets/homeScreenRedact.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -56,16 +53,14 @@ class _HomeState extends State<Home> {
           child: CachedNetworkImage(
             imageUrl: isLoading ? '' : imageURL + selectedMovie.poster,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(
-              child: const Text('loading').redact(
-                configuration: RedactedConfiguration(),
-              ),
+            placeholder: (context, url) => const Center(
+              child: CircularProgressIndicator(),
             ),
             errorWidget: (context, url, _) => Container(
-              child: const Text('loading').redact(
-                configuration: RedactedConfiguration(),
-              ),
-            ),
+                child: Padding(
+              padding: const EdgeInsets.only(top: 60.0, left: 170).r,
+              child: const Text('Error'),
+            )),
           ),
         ),
 
@@ -76,7 +71,10 @@ class _HomeState extends State<Home> {
             gradient: LinearGradient(
                 end: Alignment.bottomCenter,
                 begin: Alignment.topCenter,
-                colors: [Colors.transparent, Colors.transparent, Colors.black]),
+                colors: [
+                  Colors.transparent,
+                  Colors.black,
+                ]),
           ),
         ),
         Column(
@@ -154,7 +152,7 @@ class _HomeState extends State<Home> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Text(isLoading ? '' : '${movie.first.title}',
+              child: Text(isLoading ? '' : selectedMovie.title,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30.sp,
@@ -301,8 +299,16 @@ class _HomeState extends State<Home> {
             ),
             MovieListView(
               movies: movie,
-              isLoading: isLoading,
-            )
+              onIndexChanged: (index) {
+                setState(() {
+                  if (movie.isNotEmpty && index < movie.length) {
+                    selectedMovie = movie[index];
+                  }
+                });
+                print('Current Index: $index');
+                // print('Updated Index: $updatedIndex');
+              },
+            ),
           ],
         ),
       ]),
