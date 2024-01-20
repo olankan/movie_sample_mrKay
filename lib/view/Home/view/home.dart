@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
         Container(
           constraints: const BoxConstraints.expand(),
           child: CachedNetworkImage(
-            imageUrl: isLoading ? '' : imageURL + selectedMovie.poster,
+            imageUrl: isLoading ? '' : imageURL + selectedMovie.backdropPath,
             fit: BoxFit.cover,
             placeholder: (context, url) => const Center(
               child: CircularProgressIndicator(),
@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(
-              height: 140.h,
+              height: 80.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -147,18 +147,21 @@ class _HomeState extends State<Home> {
                     )),
               ],
             ),
+            
             SizedBox(
-              height: 5.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Text(isLoading ? '' : selectedMovie.title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30.sp,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  )),
+              height: 80,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Text(isLoading ? '' : selectedMovie.title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      )),
+                ),
+              ),
             ),
             SizedBox(
               height: 10.h,
@@ -172,7 +175,7 @@ class _HomeState extends State<Home> {
                     backgroundColor: Colors.black.withOpacity(0.5),
                     width: 210.w,
                     child: Center(
-                      child: Text('POPULAR WITH FRIENDS',
+                      child: Text('POPULAR WITH ${selectedMovie.popularity}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
@@ -196,7 +199,7 @@ class _HomeState extends State<Home> {
                     child: Center(
                         child: RichText(
                       text: TextSpan(
-                          text: '8.7',
+                          text: '${selectedMovie.rating}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w800,
@@ -223,7 +226,7 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(isLoading ? '' : '${movie.first.year.year}',
+                Text(isLoading ? '2024' : '${selectedMovie.year.year}',
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold,

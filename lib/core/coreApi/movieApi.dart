@@ -6,7 +6,7 @@ class MovieApi {
   Dio dio = Dio();
   Future<Response?> fetchMovies() async {
     try {
-      final response = await dio.get<Map<String, dynamic>>('$omdbURL',
+      final response = await dio.get<Map<String, dynamic>>('$tmdbURL',
           options: Options(headers: {
             'Authorization':
                 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZWJlZGNmNTE5YzlhZDA4YWQ3MGU1MWY4YWFhM2MxNSIsInN1YiI6IjY1OTc0ZmJmZWEzN2UwMDZmYTRkMDlhYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ERY6EDeSdog4MhB5Ix3B7VZVBbn1ELDdb0WYLiHvQ9c',
