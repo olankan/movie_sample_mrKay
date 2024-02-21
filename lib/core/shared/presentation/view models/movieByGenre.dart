@@ -8,10 +8,6 @@ class MoviesByGenreVm {
     return movie!.title!;
   }
 
-  // List<Rating> get ratings {
-  //   return movie!.!;
-  // }
-
   DateTime get releaseDate {
     return movie!.releaseDate!;
   }

@@ -16,8 +16,8 @@ class MoviesVm {
     return movie!.releaseDate!;
   }
 
-List<int>? get genreId {
-  return movie!.genreIds;
+List<int> get genreId {
+  return movie!.genreIds!;
 }
 
   String get poster {

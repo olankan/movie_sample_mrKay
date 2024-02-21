@@ -2,4 +2,5 @@ import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dar
 
 abstract class MovieRepository {
   Future<List<MoviesVm>> getFetchedMovies();
+    // Future<List<MoviesVm>> getFetchedMoviesByGenre();
 }

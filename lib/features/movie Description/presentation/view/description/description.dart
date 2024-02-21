@@ -9,10 +9,10 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../../core/resources/constants.dart';
-import '../../../../core/shared/presentation/providers/providers.dart';
-import '../widgets/arrowBackButton/arrowBackButton.dart';
-import '../widgets/glassmorphicBackground/glassmorphicBackground.dart';
+import '../../../../../core/resources/constants.dart';
+import '../../../../../core/shared/presentation/providers/providers.dart';
+import '../../widgets/arrowBackButton/arrowBackButton.dart';
+import '../../widgets/glassmorphicBackground/glassmorphicBackground.dart';
 
 class MovieDescription extends StatelessWidget {
   const MovieDescription({super.key});

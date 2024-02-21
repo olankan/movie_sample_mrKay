@@ -18,7 +18,7 @@ import '../../../../core/shared/presentation/reuasable widgets/customContainer/c
 import '../../../../core/shared/presentation/view models/moviesVm.dart';
 import '../../../../core/shared/presentation/reuasable widgets/MovieInfoHeader/movieInfoHeader.dart';
 import '../Widgets/IconData/iconData.dart';
-import '../Widgets/bottomNavBar/bottomNavBar.dart';
+import '../../../../core/shared/presentation/view/bottomNavBar/bottomNavBar.dart';
 import '../Widgets/homePageCarousel/homePageCarousel.dart';
 import '../Widgets/watchTrailer/watchTrailer.dart';
 
@@ -101,7 +101,7 @@ class HomeNew extends ConsumerWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 80.h,
+                      height: 79.h,
                     ),
                     Hero(
                       tag: 'header',
@@ -118,7 +118,7 @@ class HomeNew extends ConsumerWidget {
                     SizedBox(
                       height: 25.h,
                     ),
-                    BottomNavBar(selectedNavIndex: selectedNavIndex),
+      
                   ],
                 ),
               ),

@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:movie_sample/core/shared/data/Api/movies/movieApiService.dart';
 import 'package:movie_sample/core/shared/domain/model/movieByGenreModel.dart';
-import 'package:movie_sample/core/shared/domain/model/movieGenreModel.dart';
 import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/MovieInfoHeader/movieInfoHeader.dart';
 import 'package:movie_sample/core/shared/presentation/view%20models/movieByGenre.dart';
 import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dart';

@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/shared/presentation/providers/providers.dart';
-import '../IconData/iconData.dart';
+import '../../providers/providers.dart';
+import '../../../../../features/Home/presentation/Widgets/IconData/iconData.dart';
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({
@@ -29,7 +28,9 @@ class BottomNavBar extends ConsumerWidget {
           ...List.generate(
             BottomBarIconData.untappedIcons.length,
             (index) => GestureDetector(
-              onTap: () => ref.watch(navIndex.notifier).state = index,
+              onTap: () {
+                ref.watch(navIndex.notifier).state = index;
+              },
               child: Icon(
                 selectedNavIndex == index
                     ? BottomBarIconData.tappedIcons[index]
