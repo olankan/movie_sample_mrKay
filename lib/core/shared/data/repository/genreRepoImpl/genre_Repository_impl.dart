@@ -1,8 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:movie_sample/core/shared/domain/repository/genre_repository.dart';
 
 class GenreInfo implements GenreInfoRepo {
   @override
-  final List<Map<String, dynamic>> genresData = [
+  static final List<Map<String, dynamic>> genresData = [
     {"id": 28, "name": "Action"},
     {"id": 12, "name": "Adventure"},
     {"id": 16, "name": "Animation"},

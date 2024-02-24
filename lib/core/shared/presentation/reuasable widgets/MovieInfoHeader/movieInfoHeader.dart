@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
 import '../../../../resources/constants.dart';
-import '../../../data/repository/genre_Repository_impl.dart';
+import '../../../data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../providers/providers.dart';
 import '../customContainer/customContainer.dart';
 import '../../view models/moviesVm.dart';

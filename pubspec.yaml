@@ -44,9 +44,7 @@ dependencies:
   go_router: ^13.2.0
   marquee: ^2.2.3
   marquee_text: ^2.5.0+1
-  redacted: ^1.0.11
   riverpod_annotation: ^2.3.3
-  # spring: ^2.0.2
   youtube_player_flutter: ^8.1.2
 
 dev_dependencies:

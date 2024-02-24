@@ -4,9 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_sample/core/shared/presentation/providers/providers.dart';
 import 'package:movie_sample/core/shared/presentation/view/bottomNavBar/bottomNavBar.dart';
 import 'package:movie_sample/features/Home/presentation/view/home.dart';
-
-
-import '../../../../../features/movieCategories/presentation/pages/movieCategories.dart';
+import '../../../../../features/movieCategories/presentation/pages/movieCategories/movieCategories.dart';
 import '../../../../../features/profile/presentation/pages/profile.dart';
 
 class BottomNavBarRouter extends ConsumerWidget {
@@ -16,18 +14,21 @@ class BottomNavBarRouter extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedNavIndex = ref.watch(navIndex);
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(children: [
-        selectedNavIndex == 0
-            ? const HomeNew()
-            : selectedNavIndex == 1
-                ? const MovieCategoriesScreen()
-                : const ProfilePage(),
-        Positioned(
-          top: 824.h,
-          left: 20.w,
-          child: BottomNavBar(selectedNavIndex: selectedNavIndex)),
-      ]),
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          selectedNavIndex == 1
+              ? const HomeNew()
+              : selectedNavIndex == 0
+                  ? const MovieCategoriesScreen()
+                  : const ProfilePage(),
+          Positioned(
+            top: 824.h,
+            left: 20.w,
+            child: BottomNavBar(selectedNavIndex: selectedNavIndex),
+          ),
+        ],
+      ),
     );
   }
 }

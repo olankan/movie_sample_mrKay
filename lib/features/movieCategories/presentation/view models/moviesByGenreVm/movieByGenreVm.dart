@@ -1,4 +1,4 @@
-import '../../domain/model/movieByGenreModel.dart';
+import '../../../data/models/movieByGenremodel/movieByGenreModel.dart';
 
 class MoviesByGenreVm {
   final Result? movie;

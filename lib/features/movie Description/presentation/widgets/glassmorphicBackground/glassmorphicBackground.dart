@@ -7,14 +7,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:movie_sample/core/shared/data/Api/movies/movieApiService.dart';
-import 'package:movie_sample/core/shared/domain/model/movieByGenreModel.dart';
+import 'package:movie_sample/features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/MovieInfoHeader/movieInfoHeader.dart';
-import 'package:movie_sample/core/shared/presentation/view%20models/movieByGenre.dart';
+import 'package:movie_sample/features/movieCategories/presentation/view%20models/moviesByGenreVm/movieByGenreVm.dart';
 import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/data/Api/moviesByGenre/moviesByGenre.dart';
-import '../../../../../core/shared/data/repository/genre_Repository_impl.dart';
+import '../../../../../core/shared/data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../../../../core/shared/presentation/providers/providers.dart';
 import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';
 
@@ -111,64 +111,7 @@ class GlassmorphicBackground extends ConsumerWidget {
               child: MovieInfoHeader(
                   selectedMovie: selectedMovie, isNotified: isNotified)),
           // Text()
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
-            child: SizedBox(
-              height: 20.0.h,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: GenreInfo().genresData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final genre = GenreInfo().genresData[index];
-                    // final movieLoader =
-                    //     MoviesByGenreApiService().getMoviesByGenre(genre['id']);
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 4).r,
-                          height: 20.h,
-                          width: null,
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(10).r,
-                              border: Border.all(
-                                color: Colors.white.withOpacity(0.8),
-                              )),
-                          child: Center(
-                            child: Text(
-                              genre['name'],
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontFamily: fontFamily,
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                            ),
-                          ),
-                        ).animate().fadeIn(
-                            begin: 0.5,
-                            duration: 1000.ms,
-                            curve: Curves.easeInOutCubic),
-                        Visibility(
-                          visible: index != GenreInfo().genresData.length - 1,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0).r,
-                            child: CustomContainer(
-                              backgroundColor: Colors.white.withOpacity(0.8),
-                              height: 2.h,
-                              width: 2.w,
-                            ).animate().fadeIn(
-                                begin: 0.5,
-                                duration: 1000.ms,
-                                curve: Curves.easeInOutCubic),
-                          ),
-                        ),
-                      ],
-                    );
-                  }),
-            ),
-          ),
+          
           // CarouselSlider.builder(itemCount: genreMovies.length, itemBuilder: itemBuilder, options: options)
         ],
       ),

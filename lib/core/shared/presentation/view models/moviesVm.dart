@@ -1,4 +1,4 @@
-import '../../domain/model/movieModel.dart';
+import '../../domain/model/movieModel/movieModel.dart';
 
 class MoviesVm {
   final Result? movie;

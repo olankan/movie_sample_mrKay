@@ -5,6 +5,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        print('Entered profile successfully');
     return Scaffold(
       backgroundColor: Colors.white,
       body: Placeholder(color: Colors.white,),

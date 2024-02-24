@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_sample/features/Home/data/repository/movie_repository_impl.dart';
+import 'package:movie_sample/core/shared/data/repository/movieRepoImpl/movie_repository_impl.dart';
 import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dart';
 
 final movieProvider = FutureProvider<List<MoviesVm>>((ref) async {
