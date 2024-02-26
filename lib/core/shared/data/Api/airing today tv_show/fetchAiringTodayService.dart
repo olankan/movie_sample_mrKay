@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/airingToday model/AiringToday.model.dart';
+import '../../../domain/models/airingToday model/AiringToday.model.dart';
 import 'AiringToday_TvShow.dart';
 
 class FetchAiringTodayService {

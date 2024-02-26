@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/now_playing movies model/nowPlayingMovies.model.dart';
+import '../../../domain/models/now_playing movies model/nowPlayingMovies.model.dart';
 import 'NowPlayingMoviesApiService.dart';
 
 class FetchNowPlayingMoviesService {

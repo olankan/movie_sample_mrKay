@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/movieVideos model/movieVideos.model.dart';
+import '../../../domain/models/movieVideos model/movieVideos.model.dart';
 import 'movieVideosApiService.dart';
 
 class FetchMovieVideosService {

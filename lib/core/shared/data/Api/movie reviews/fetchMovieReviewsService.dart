@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/movie reviews model/movieReviews.model.dart';
+import '../../../domain/models/movie reviews model/movieReviews.model.dart';
 import 'moviesReviewsApiService.dart';
 
 class FetchMovieReviewsService {

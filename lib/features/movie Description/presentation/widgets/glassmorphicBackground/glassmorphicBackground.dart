@@ -10,7 +10,7 @@ import 'package:movie_sample/core/shared/data/Api/movies/movieApiService.dart';
 import 'package:movie_sample/features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/MovieInfoHeader/movieInfoHeader.dart';
 import 'package:movie_sample/features/movieCategories/presentation/view%20models/moviesByGenreVm/movieByGenreVm.dart';
-import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dart';
+import 'package:movie_sample/core/shared/presentation/view%20models/movies%20vm/moviesVm.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/data/Api/moviesByGenre/moviesByGenreApiService.dart';

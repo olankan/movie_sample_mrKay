@@ -9,7 +9,7 @@ import '../../../../resources/constants.dart';
 import '../../../data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../providers/providers.dart';
 import '../customContainer/customContainer.dart';
-import '../../view models/moviesVm.dart';
+import '../../view models/movies vm/moviesVm.dart';
 
 class MovieInfoHeader extends StatelessWidget {
   const MovieInfoHeader({

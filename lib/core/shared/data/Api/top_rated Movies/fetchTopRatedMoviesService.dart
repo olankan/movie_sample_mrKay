@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/top_rated movies/topRatedMovies.model.dart';
+import '../../../domain/models/top_rated movies/topRatedMovies.model.dart';
 import 'topRatedMoviesApiService.dart';
 
 class FetchTopRatedMoviesService {

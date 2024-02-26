@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 
-import '../../../domain/model/upcoming movies model/movieModel.dart';
+import '../../../domain/models/upcoming movies model/upcomingMovies.model.dart';
 import 'upcomingMoviesApiService.dart';
 
 class FetchUpcomingMoviesService {

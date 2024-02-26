@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movie_sample/core/shared/domain/model/popular_tv%20model/PopularTv.model.dart';
+import 'package:movie_sample/core/shared/domain/models/popular_tv%20model/PopularTv.model.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 

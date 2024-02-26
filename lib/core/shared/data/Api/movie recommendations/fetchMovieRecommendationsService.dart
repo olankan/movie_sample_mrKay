@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movie_sample/core/shared/domain/model/movie%20recommendations/movie_recomendations.model.dart';
+import 'package:movie_sample/core/shared/domain/models/movie%20recommendations/movie_recomendations.model.dart';
 
 import '../../../../../features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 

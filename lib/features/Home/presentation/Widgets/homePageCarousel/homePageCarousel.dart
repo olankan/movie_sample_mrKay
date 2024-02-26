@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/presentation/providers/providers.dart';
-import '../../../../../core/shared/presentation/view models/moviesVm.dart';
+import '../../../../../core/shared/presentation/view models/movies vm/moviesVm.dart';
 
 class HomePageCarousel extends ConsumerWidget {
   const HomePageCarousel({
