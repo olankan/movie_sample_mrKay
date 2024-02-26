@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movie_sample/core/shared/domain/model/movieModel/movieModel.dart';
+import 'package:movie_sample/core/shared/domain/model/movie%20model/movieModel.dart';
 
 import 'movieApiService.dart';
 

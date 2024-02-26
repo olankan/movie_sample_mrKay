@@ -9,6 +9,7 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:movie_sample/features/movieCategories/presentation/providers/moviesByGenreProvider.dart';
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/presentation/providers/providers.dart';
 import '../../widgets/arrowBackButton/arrowBackButton.dart';
@@ -21,15 +22,20 @@ class MovieDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
+      // final movieDescriptionIndex = ref.watch(movieDescriptionProvider);
       final movies = ref.watch(movieProvider);
+      // movieDescriptionIndex == 0
+      // ? ref.watch(movieProvider)
+      // : ref.watch(movieByGenreProvider);
+
       final currentMovieIndex = ref.watch(movieIndex);
 
-      final selectedNavIndex = ref.watch(navIndex);
+      // final selectedNavIndex = ref.watch(navIndex);
 
       return movies.when(
         data: (movies) {
-          final selectedMovie =
-              movies.isNotEmpty ? movies[currentMovieIndex!] : null;
+          // final selectedMovie =
+          //     movies.isNotEmpty ? movies[currentMovieIndex!] : null;
           return Scaffold(
               backgroundColor: Colors.black,
               body: Stack(

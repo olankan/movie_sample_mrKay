@@ -24,7 +24,7 @@ class MoviesByGenre extends ConsumerWidget {
           key: Key(selectedGenreType),
           padding: const EdgeInsets.only(left: 2.0).r,
           child: RichText(
-              text: TextSpan(children: [
+                  text: TextSpan(children: [
             TextSpan(
                 text: selectedGenreType,
                 style: TextStyle(
@@ -39,14 +39,9 @@ class MoviesByGenre extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                     fontFamily: fontFamily,
                     fontSize: 20.sp))
-          ])
-              // child: Text(
-
-              //   style:
-
-              // .animate()
-              // .fadeIn(begin: 0.5, duration: 200.ms, curve: Curves.easeInOut),
-              ),
+          ]))
+              .animate()
+              .fadeIn(begin: 0.5, duration: 200.ms, curve: Curves.easeInOut),
         ),
         moviesByGenre.when(
           data: (genreMovies) {
@@ -54,7 +49,7 @@ class MoviesByGenre extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 210.0.h,
+                  height: 215.0.h,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: genreMovies.length,

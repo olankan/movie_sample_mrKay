@@ -13,7 +13,7 @@ import 'package:movie_sample/features/movieCategories/presentation/view%20models
 import 'package:movie_sample/core/shared/presentation/view%20models/moviesVm.dart';
 
 import '../../../../../core/resources/constants.dart';
-import '../../../../../core/shared/data/Api/moviesByGenre/moviesByGenre.dart';
+import '../../../../../core/shared/data/Api/moviesByGenre/moviesByGenreApiService.dart';
 import '../../../../../core/shared/data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../../../../core/shared/presentation/providers/providers.dart';
 import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';

@@ -51,6 +51,7 @@ class MovieCategoriesScreen extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                              
                                 ref.watch(selectedGenreIndex.notifier).state =
                                     index;
                                 ref.watch(movieGenreID.notifier).state =

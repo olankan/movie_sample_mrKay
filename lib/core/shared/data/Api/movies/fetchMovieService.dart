@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../domain/model/movieModel/movieModel.dart';
+import '../../../domain/model/movie model/movieModel.dart';
 import 'movieApiService.dart';
 
 class FetchMoviesService {
