@@ -1,40 +1,27 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:movie_sample/core/shared/data/Api/movies/movieApiService.dart';
-import 'package:movie_sample/features/movieCategories/data/models/movieByGenremodel/movieByGenreModel.dart';
 import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/MovieInfoHeader/movieInfoHeader.dart';
-import 'package:movie_sample/features/movieCategories/presentation/view%20models/moviesByGenreVm/movieByGenreVm.dart';
-import 'package:movie_sample/core/shared/presentation/view%20models/movies%20vm/moviesVm.dart';
 
 import '../../../../../core/resources/constants.dart';
-import '../../../../../core/shared/data/Api/moviesByGenre/moviesByGenreApiService.dart';
-import '../../../../../core/shared/data/repository/genreRepoImpl/genre_Repository_impl.dart';
-import '../../../../../core/shared/presentation/providers/providers.dart';
-import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';
+import '../../../../../core/shared/presentation/providers/sharedProviders.dart';
+import '../../../../../core/shared/presentation/view models/movies vm/moviesVm.dart';
 
 class GlassmorphicBackground extends ConsumerWidget {
-  const GlassmorphicBackground(
-      {super.key, required this.currentMovieIndex, required this.movies});
+  const GlassmorphicBackground({super.key, required this.movies});
 
-  final int? currentMovieIndex;
-  final movies;
-
+  final MoviesVm movies;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<MoviesByGenreVm> genreMovies;
-    final selectedMovie = movies[currentMovieIndex];
     final isNotified = ref.watch(onNotify);
-    //  final selectedMovie =
-    //         movies.isNotEmpty ? movies[_currentMovieIndex!] : null;
-    //     final movies = ref.watch(movieProvider);
-    //   final currentMovieIndex = ref.watch(movieIndex);
+
     return GlassmorphicContainer(
       width: double.infinity,
       height: MediaQuery.of(context).size.height,
@@ -65,7 +52,7 @@ class GlassmorphicBackground extends ConsumerWidget {
             child: Hero(
               tag: 'movie image',
               child: CachedNetworkImage(
-                imageUrl: '$imageURL${movies[currentMovieIndex!].poster}',
+                imageUrl: '$imageURL${movies.poster}',
                 imageBuilder: (context, image) => Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -109,9 +96,9 @@ class GlassmorphicBackground extends ConsumerWidget {
           Hero(
               tag: 'header',
               child: MovieInfoHeader(
-                  selectedMovie: selectedMovie, isNotified: isNotified)),
+                  selectedMovie: movies, isNotified: isNotified)),
           // Text()
-          
+
           // CarouselSlider.builder(itemCount: genreMovies.length, itemBuilder: itemBuilder, options: options)
         ],
       ),

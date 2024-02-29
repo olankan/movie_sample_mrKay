@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_sample/core/shared/presentation/providers/providers.dart';
+import 'package:movie_sample/core/shared/presentation/providers/sharedProviders.dart';
 import 'package:movie_sample/core/shared/presentation/view/bottomNavBar/bottomNavBar.dart';
 import 'package:movie_sample/features/Home/presentation/view/home.dart';
 import '../../../../../features/movieCategories/presentation/pages/movieCategories/movieCategories.dart';

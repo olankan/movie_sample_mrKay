@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
 
 import '../../../../../core/resources/constants.dart';
-import '../../../../../core/shared/presentation/providers/providers.dart';
+import '../../../../../core/shared/presentation/providers/sharedProviders.dart';
 import '../../../../../core/shared/presentation/view models/movies vm/moviesVm.dart';
 
 class HomePageCarousel extends ConsumerWidget {
@@ -27,7 +28,12 @@ class HomePageCarousel extends ConsumerWidget {
     // final _previousMovieIndex = ref.watch(previousMovieIndex);
     final _currentMovieIndex = ref.watch(movieIndex);
     return GestureDetector(
-      onTap: () => context.go('/description'),
+      onTap: () {
+        ref
+            .watch(descriptionProvider.notifier)
+            .setObject(movies[_currentMovieIndex!]);
+        context.go('/description');
+      },
       child: SizedBox(
         height: 590.h,
         width: 390.w,
@@ -74,7 +80,6 @@ class HomePageCarousel extends ConsumerWidget {
                 );
               },
               options: CarouselOptions(
-
                 pageViewKey: const PageStorageKey('home'),
                 scrollDirection: Axis.horizontal,
                 enableInfiniteScroll: true,
@@ -83,14 +88,12 @@ class HomePageCarousel extends ConsumerWidget {
                 autoPlayInterval: const Duration(seconds: 5),
                 autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 enlargeCenterPage: true,
-
                 viewportFraction: 1,
                 aspectRatio: 0.1,
-
                 onPageChanged: (index, reason) {
                   ref.watch(movieIndex.notifier).state = index;
                   ref.watch(previousMovieIndex.notifier).state =
-                  _currentMovieIndex;
+                      _currentMovieIndex;
 
                   // ref.watch(isChanged.notifier).state = !pageChanged;
                   // print(pageChanged);

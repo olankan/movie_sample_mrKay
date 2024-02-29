@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../providers/providers.dart';
+import '../../providers/sharedProviders.dart';
 import '../../../../../features/Home/presentation/Widgets/IconData/iconData.dart';
 
 class BottomNavBar extends ConsumerWidget {

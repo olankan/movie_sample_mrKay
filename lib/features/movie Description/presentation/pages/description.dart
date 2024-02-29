@@ -8,32 +8,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
 import '../../../../core/resources/constants.dart';
-import '../../../../core/shared/presentation/providers/providers.dart';
+import '../../../../core/shared/presentation/providers/sharedProviders.dart';
+import '../../../movieCategories/presentation/providers/moviesByGenreProvider.dart';
 
 class MovieDescription extends StatelessWidget {
-  MovieDescription({super.key});
-
+  const MovieDescription({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
+      // final isMovieByGenrePage = ref.watch(isMovieByGenreScreen);
       final movies = ref.watch(movieProvider);
       final currentMovieIndex = ref.watch(movieIndex);
-  
-      final selectedNavIndex = ref.watch(navIndex);
+
+      // final selectedNavIndex = ref.watch(navIndex);
 
       return movies.when(
         data: (movies) {
           final selectedMovie =
               movies.isNotEmpty ? movies[currentMovieIndex!] : null;
 
+          var poster;
           return Scaffold(
               backgroundColor: Colors.black,
               body: Stack(
                 children: [
-                 
                   CachedNetworkImage(
                     imageUrl: '$imageURL${movies[currentMovieIndex!].poster}',
                     imageBuilder: (context, image) => Container(
@@ -172,7 +174,7 @@ class MovieDescription extends StatelessWidget {
                             delay: 200.ms,
                           ),
                     ),
-                  ), 
+                  ),
                 ],
               ));
         },

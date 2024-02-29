@@ -1,15 +1,16 @@
 import '../../../domain/models/movie/movieModel.dart';
 
+
 class MoviesVm {
-  final Result? movie;
+  final UltimateResultModel? movie;
   MoviesVm({this.movie});
 
   String get title {
-    return movie!.title!;
+    return movie!.title ?? movie!.name!;
   }
 
   DateTime get releaseDate {
-    return movie!.releaseDate!;
+    return movie!.releaseDate ?? movie!.firstAirDate!;
   }
 
   List<int> get genreId {
@@ -17,19 +18,19 @@ class MoviesVm {
   }
 
   String get poster {
-    return movie!.posterPath!;
+    return movie!.posterPath ?? '';
   }
 
   String get backdropPath {
-    return movie!.backdropPath!;
+    return movie!.backdropPath ?? '';
   }
 
   String get overview {
-    return movie!.overview!;
+    return movie!.overview ?? '';
   }
 
   double get rating {
-    return movie!.voteAverage!;
+    return movie!.voteAverage! ;
   }
 
   int get movieID {

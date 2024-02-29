@@ -1,18 +1,15 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/shared/data/repository/fetchedMoviesListService/fetchedMoviesListService.dart';
+import '../../../../core/shared/presentation/view models/movies vm/moviesVm.dart';
 
-import '../../data/repository/movieByGenreRepoImpl/movieByGenre_ repository_impl.dart';
-import '../view models/moviesByGenreVm/movieByGenreVm.dart';
-
-final movieByGenreProvider = FutureProvider<List<MoviesByGenreVm>>((ref) async {
-  // Access the value of movieGenreID using ref.watch
+final movieByGenreProvider = FutureProvider<List<MoviesVm>>((ref) async {
   int genreId = ref.watch(movieGenreID);
-  print(genreId);
-
   try {
-    MovieByGenreRepoImpl movieByGenreRepoImpl = MovieByGenreRepoImpl();
-    return await movieByGenreRepoImpl.getFetchedMoviesByGenre(genreId);
+    FetchedMoviesListService _fetchedMoviesListService =
+        FetchedMoviesListService();
+    return await _fetchedMoviesListService.getFetchedMoviesByGenreList(genreId);
   } catch (e) {
     print(e);
     return [];

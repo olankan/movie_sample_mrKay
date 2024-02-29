@@ -15,7 +15,7 @@ class ArrowBackButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // ref.watch(movieIndex.notifier).state = 0;
-        context.go('/');
+        context.pop();
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 60.0, left: 20.0).r,

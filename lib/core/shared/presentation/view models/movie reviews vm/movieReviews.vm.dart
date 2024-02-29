@@ -1,4 +1,6 @@
-import '../movie reviews model/movieReviews.model.dart';
+import 'package:movie_sample/core/shared/domain/models/movie%20reviews%20model/movieReviews.model.dart';
+
+
 
 class MovieReviewsVm {
   final Result? review;

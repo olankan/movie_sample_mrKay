@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:movie_sample/core/shared/domain/repository/genre_repository.dart';
+import 'package:movie_sample/core/shared/domain/repository/genre_repository/genre_repository.dart';
 
 class GenreInfo implements GenreInfoRepo {
   @override

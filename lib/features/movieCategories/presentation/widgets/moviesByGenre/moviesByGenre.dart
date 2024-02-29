@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
+import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../providers/moviesByGenreProvider.dart';
@@ -61,8 +63,12 @@ class MoviesByGenre extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                // ref.watch(movieByGenreIndex.notifier).state = index;
-                                // ref.watch(movieIndex.notifier).state = index;
+                                // ref.watch(isMovieByGenreScreen.notifier).state = true;
+                                // ref.watch(descriptionProvider.notifier).state = MoviesByGenreDescriptionProvider(dynamic);
+                                // ref
+                                //     .watch(descriptionProvider.notifier)
+                                //     .setObject(movie);
+                                context.go('/description');
                               },
                               child: Column(
                                 children: [

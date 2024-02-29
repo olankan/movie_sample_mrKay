@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
 import '../../../../resources/constants.dart';
 import '../../../data/repository/genreRepoImpl/genre_Repository_impl.dart';
-import '../../providers/providers.dart';
+import '../../providers/sharedProviders.dart';
 import '../customContainer/customContainer.dart';
 import '../../view models/movies vm/moviesVm.dart';
 

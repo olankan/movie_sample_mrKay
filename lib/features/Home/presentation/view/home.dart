@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:movie_sample/core/resources/constants.dart';
-import 'package:movie_sample/core/shared/presentation/providers/providers.dart';
+import 'package:movie_sample/core/shared/presentation/providers/sharedProviders.dart';
 import '../../../../core/shared/presentation/reuasable widgets/MovieInfoHeader/movieInfoHeader.dart';
 import '../Widgets/homePageCarousel/homePageCarousel.dart';
 import '../Widgets/watchTrailer/watchTrailer.dart';
@@ -23,142 +23,143 @@ class HomeNew extends ConsumerWidget {
     final _movies = ref.watch(movieProvider);
     final _currentMovieIndex = ref.watch(movieIndex);
     final isNotified = ref.watch(onNotify);
-    return _movies.when(
-      data: (movies) {
-        final selectedMovie =
-            movies.isNotEmpty ? movies[_currentMovieIndex!] : null;
 
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: [
-              CachedNetworkImage(
-                key: Key('$imageURL${movies[_currentMovieIndex!].poster}'),
-                cacheKey: '$imageURL${movies[_currentMovieIndex].poster}',
-                imageUrl: '$imageURL${movies[_currentMovieIndex].poster}',
-                imageBuilder: (context, image) => Container(
-                  decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.circular(90.r),
-                    image: DecorationImage(
-                      image: image,
-                      fit: BoxFit.fill,
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: _movies.when(
+          data: (movies) {
+            final selectedMovie =
+                movies.isNotEmpty ? movies[_currentMovieIndex!] : null;
+
+            return Stack(
+              children: [
+                CachedNetworkImage(
+                  key: Key('$imageURL${movies[_currentMovieIndex!].poster}'),
+                  cacheKey: '$imageURL${movies[_currentMovieIndex].poster}',
+                  imageUrl: '$imageURL${movies[_currentMovieIndex].poster}',
+                  imageBuilder: (context, image) => Container(
+                    decoration: BoxDecoration(
+                      // borderRadius: BorderRadius.circular(90.r),
+                      image: DecorationImage(
+                        image: image,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ).animate().fadeIn(duration: 800.ms, begin: 0.5),
+                  placeholder: (context, url) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black54,
+                      // borderRadius: BorderRadius.circular(90.r),
+                    ),
+                    child: Transform.scale(
+                      scale: 1.3,
+                      child: const Center(
+                          child: CupertinoActivityIndicator(color: Colors.red)),
                     ),
                   ),
-                ).animate().fadeIn(duration: 800.ms, begin: 0.5),
-                placeholder: (context, url) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    // borderRadius: BorderRadius.circular(90.r),
-                  ),
-                  child: Transform.scale(
-                    scale: 1.3,
-                    child: const Center(
-                        child: CupertinoActivityIndicator(color: Colors.red)),
+                  errorWidget: (context, url, error) => Container(
+                    // height: 240.h,
+                    // width: 100.w,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(22.r),
+                    ),
                   ),
                 ),
-                errorWidget: (context, url, error) => Container(
-                  // height: 240.h,
-                  // width: 100.w,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(22.r),
+                GlassmorphicContainer(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
+                  borderRadius: 0,
+                  border: 0,
+                  blur: 20,
+                  linearGradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.2),
+                      Colors.black.withOpacity(0.05),
+                    ],
+                    stops: [0.1, 1],
                   ),
-                ),
-              ),
-              GlassmorphicContainer(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height,
-                borderRadius: 0,
-                border: 0,
-                blur: 20,
-                linearGradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.2),
-                    Colors.black.withOpacity(0.05),
-                  ],
-                  stops: [0.1, 1],
-                ),
-                borderGradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFffffff).withOpacity(0),
-                    Color((0xFFFFFFFF)).withOpacity(0),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 79.h,
-                    ),
-                    Hero(
-                      tag: 'header',
-                      child: MovieInfoHeader(
-                          selectedMovie: selectedMovie, isNotified: isNotified),
-                    ),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    HomePageCarousel(
-                      bucket: bucket,
-                      movies: movies,
-                    ),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                  left: 292.w,
-                  top: 95.h,
+                  borderGradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFffffff).withOpacity(0),
+                      Color((0xFFFFFFFF)).withOpacity(0),
+                    ],
+                  ),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50.0).r,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.search,
-                              size: 25.r,
-                              color: Colors.white.withOpacity(0.8),
-                            ),
-                            SizedBox(width: 15.w),
-                            GestureDetector(
-                              onTap: () {
-                                ref.watch(onNotify.notifier).state =
-                                    !isNotified;
-                              },
-                              child: Icon(
-                                isNotified
-                                    ? EvaIcons.bell
-                                    : EvaIcons.bellOutline,
-                                color: Colors.white.withOpacity(0.8),
-                                size: 25.r,
-                              ),
-                            ),
-                          ],
-                        ),
+                      SizedBox(
+                        height: 79.h,
+                      ),
+                      Hero(
+                        tag: 'header',
+                        child: MovieInfoHeader(
+                            selectedMovie: selectedMovie,
+                            isNotified: isNotified),
                       ),
                       SizedBox(
-                        height: 40.h,
+                        height: 25.h,
                       ),
-                      WatchTrailer(currentMovieIndex: _currentMovieIndex),
+                      HomePageCarousel(
+                        bucket: bucket,
+                        movies: movies,
+                      ),
+                      SizedBox(
+                        height: 25.h,
+                      ),
                     ],
-                  )),
-            ],
+                  ),
+                ),
+                Positioned(
+                    left: 292.w,
+                    top: 95.h,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50.0).r,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.search,
+                                size: 25.r,
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                              SizedBox(width: 15.w),
+                              GestureDetector(
+                                onTap: () {
+                                  ref.watch(onNotify.notifier).state =
+                                      !isNotified;
+                                },
+                                child: Icon(
+                                  isNotified
+                                      ? EvaIcons.bell
+                                      : EvaIcons.bellOutline,
+                                  color: Colors.white.withOpacity(0.8),
+                                  size: 25.r,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        WatchTrailer(currentMovieIndex: _currentMovieIndex),
+                      ],
+                    )),
+              ],
+            );
+          },
+          error: (error, stackTrace) => Text('Error: $error'),
+          loading: () => Center(
+            child: Transform.scale(
+              scale: 1.3,
+              child: CupertinoActivityIndicator(color: Colors.red),
+            ),
           ),
-        );
-      },
-      error: (error, stackTrace) => Text('Error: $error'),
-      loading: () => Center(
-        child: Transform.scale(
-          scale: 1.3,
-          child: CupertinoActivityIndicator(color: Colors.red),
-        ),
-      ),
-    );
+        ));
   }
 }
