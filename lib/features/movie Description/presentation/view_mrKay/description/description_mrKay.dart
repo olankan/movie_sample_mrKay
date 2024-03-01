@@ -9,8 +9,8 @@ import '../../../../../core/resources/constants.dart';
 import '../../widgets/arrowBackButton/arrowBackButton.dart';
 import '../../widgets/glassmorphicBackground/glassmorphicBackground.dart';
 
-class MovieDescription extends ConsumerWidget {
-  const MovieDescription({super.key});
+class MrKayMovieDescription extends ConsumerWidget {
+  const MrKayMovieDescription({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -18,7 +18,7 @@ abstract class FetchedMoviesListServiceInterface {
   Future<List<MoviesVm>> getFetchedMoviesByGenreList(id);
   Future<List<MoviesVm>> getFetchedMovieRecommendationsList(id);
   Future<List<MoviesVm>> getFetchedPopularMoviesList();
-  Future<List<MoviesVm>> getFetchedOnTheAirMoviesList();
+  Future<List<MoviesVm>> getFetchedOnTheAirTvShowsList();
   Future<List<MovieCreditsVm>> getFetchedMovieCreditsList(id);
   Future<List<MovieReviewsVm>> getFetchedMovieReviewsList(id);
   Future<List<MovieVideoVm>> getFetchedMovieVideosList(id);

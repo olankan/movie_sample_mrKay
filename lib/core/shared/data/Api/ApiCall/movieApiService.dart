@@ -13,7 +13,7 @@ class MoviesApiService {
             'accept': 'application/json'
           }));
       if (response.statusCode == 200) {
-        print(response.data);
+        // print(response.data);
 
         return response;
       } else {

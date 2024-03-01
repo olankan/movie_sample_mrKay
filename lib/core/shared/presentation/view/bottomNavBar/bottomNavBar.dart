@@ -15,6 +15,7 @@ class BottomNavBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pressed = ref.watch(onPressed);
     return Container(
       height: 105.h,
       width: 390.w,
@@ -30,6 +31,7 @@ class BottomNavBar extends ConsumerWidget {
             (index) => GestureDetector(
               onTap: () {
                 ref.watch(navIndex.notifier).state = index;
+                ref.watch(onPressed.notifier).state = !pressed;
               },
               child: Icon(
                 selectedNavIndex == index

@@ -72,7 +72,7 @@ class FetchedMoviesListService implements FetchedMoviesListServiceInterface {
   }
 
   @override
-  Future<List<MoviesVm>> getFetchedOnTheAirMoviesList() async {
+  Future<List<MoviesVm>> getFetchedOnTheAirTvShowsList() async {
     var res = await _fetchedApiMovies.getFetchedOnTheAirMovies();
     return res!.results!.map((e) => MoviesVm(movie: e)).toList();
   }

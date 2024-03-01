@@ -8,10 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
+import 'package:movie_sample/features/movieCategories/presentation/providers/moviesByGenreProvider.dart';
 import '../../../../core/resources/constants.dart';
 import '../../../../core/shared/presentation/providers/sharedProviders.dart';
-import '../../../movieCategories/presentation/providers/moviesByGenreProvider.dart';
+import '../../../movieCategories/presentation/providers/movieCategoriesProvider.dart';
 
 class MovieDescription extends StatelessWidget {
   const MovieDescription({super.key});
@@ -21,17 +21,14 @@ class MovieDescription extends StatelessWidget {
     return Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
       // final isMovieByGenrePage = ref.watch(isMovieByGenreScreen);
-      final movies = ref.watch(movieProvider);
+      final isNavigatedToMBG = ref.watch(onNavigateToMoviesByGenre);
+      final movies = ref.watch(movieCategoryProvider);
       final currentMovieIndex = ref.watch(movieIndex);
 
       // final selectedNavIndex = ref.watch(navIndex);
 
       return movies.when(
         data: (movies) {
-          final selectedMovie =
-              movies.isNotEmpty ? movies[currentMovieIndex!] : null;
-
-          var poster;
           return Scaffold(
               backgroundColor: Colors.black,
               body: Stack(
@@ -135,7 +132,11 @@ class MovieDescription extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       ref.watch(movieIndex.notifier).state = 0;
-                      context.go('/');
+                      // context.pop();
+
+                      ref.watch(onNavigateToMoviesByGenre.notifier).state =
+                          !isNavigatedToMBG;
+                      print('Tapped');
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 60.0, left: 20.0).r,

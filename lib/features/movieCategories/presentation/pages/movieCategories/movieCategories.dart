@@ -1,17 +1,19 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, no_leading_underscores_for_local_identifiers
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marquee/marquee.dart';
-import 'package:movie_sample/features/movieCategories/presentation/providers/moviesByGenreProvider.dart';
+import 'package:movie_sample/features/movieCategories/presentation/providers/movieCategoriesProvider.dart';
+import 'package:movie_sample/features/movieCategories/presentation/widgets/moviesByGenre/movieCategories.screens/nowPlayingMovies.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';
+import '../../providers/moviesByGenreProvider.dart';
 import '../../widgets/moviesByGenre/moviesByGenre.dart';
 
 class MovieCategoriesScreen extends ConsumerWidget {
@@ -51,12 +53,11 @@ class MovieCategoriesScreen extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                              
                                 ref.watch(selectedGenreIndex.notifier).state =
                                     index;
                                 ref.watch(movieGenreID.notifier).state =
                                     genre['id'];
-                                     ref.watch(movieGenreType.notifier).state =
+                                ref.watch(movieGenreType.notifier).state =
                                     genre['name'];
                               },
                               child: AnimatedContainer(
@@ -115,7 +116,8 @@ class MovieCategoriesScreen extends ConsumerWidget {
                       }),
                 ),
               ),
-              MoviesByGenre()
+              MoviesByGenre(),
+              NowPlayingMovies()
             ],
           ),
         ),

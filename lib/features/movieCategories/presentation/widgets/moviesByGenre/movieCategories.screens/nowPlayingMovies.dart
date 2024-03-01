@@ -8,63 +8,53 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
+import 'package:movie_sample/features/movieCategories/presentation/providers/individualMovieProviders.dart';
 import 'package:movie_sample/features/movieCategories/presentation/providers/movieCategoriesProvider.dart';
-import '../../../../../core/resources/constants.dart';
-import '../../providers/moviesByGenreProvider.dart';
 
-class MoviesByGenre extends ConsumerWidget {
-  const MoviesByGenre({super.key});
+import '../../../../../../core/resources/constants.dart';
+
+class NowPlayingMovies extends ConsumerWidget {
+  const NowPlayingMovies({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final moviesByGenre = ref.watch(movieByGenreProvider);
-    final selectedGenreType = ref.watch(movieGenreType);
+    final moviesByGenre = ref.watch(nowPlayingMoviesProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          key: Key(selectedGenreType),
-          padding: const EdgeInsets.only(left: 2.0).r,
-          child: RichText(
-                  text: TextSpan(children: [
-            TextSpan(
-                text: selectedGenreType,
-                style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: fontFamily,
-                    fontSize: 20.sp)),
-            TextSpan(
-                text: ' movies',
-                style: TextStyle(
-                    color: Colors.white.withOpacity(0.6),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: fontFamily,
-                    fontSize: 20.sp))
-          ]))
-              .animate()
-              .fadeIn(begin: 0.5, duration: 200.ms, curve: Curves.easeInOut),
-        ),
         moviesByGenre.when(
-          data: (genreMovies) {
+          data: (movies) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Padding(
+                  // key: Key(selectedGenreType),
+                  padding: const EdgeInsets.only(left: 2.0).r,
+                  child: Text(
+                    'Now Playing Movies',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+                        fontSize: 20.sp),
+                  ).animate().fadeIn(
+                      begin: 0.5, duration: 200.ms, curve: Curves.easeInOut),
+                ),
                 SizedBox(
                   height: 215.0.h,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: genreMovies.length,
+                      itemCount: movies.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final movie = genreMovies[index];
+                        final movie = movies[index];
 
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             GestureDetector(
                               onTap: () {
-                                ref.watch(onNavigateToMoviesByGenre.notifier).state = true;
+                                ref.watch(onNavigateToNowPlayingMovies.notifier).state = true;
                                 context.go('/description');
                               },
                               child: Column(
