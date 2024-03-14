@@ -126,6 +126,7 @@ class FetchedMoviesApiService implements FetchedMoviesApiServiceInterface {
   Future<MovieReviewsModel?> getFetchedMovieReviews(id) async {
     final Response? response = await apiCall.getMovieReviews(id);
     if (response != null) {
+      // print(response.data);
       return MovieReviewsModel.fromJson(response.data);
     }
     return null;

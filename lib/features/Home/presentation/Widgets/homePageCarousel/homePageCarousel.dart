@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
+import 'package:movie_sample/features/movieCategories/presentation/providers/movieCategoriesProvider.dart';
 
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/presentation/providers/sharedProviders.dart';
@@ -27,26 +28,28 @@ class HomePageCarousel extends ConsumerWidget {
 
     // final _previousMovieIndex = ref.watch(previousMovieIndex);
     final _currentMovieIndex = ref.watch(movieIndex);
-    return GestureDetector(
-      onTap: () {
-        ref
-            .watch(descriptionProvider.notifier)
-            .setObject(movies[_currentMovieIndex!]);
-        context.go('/description');
-      },
-      child: SizedBox(
-        height: 590.h,
-        width: 390.w,
-        child: Hero(
-          tag: 'movie image',
-          child: PageStorage(
-            bucket: bucket,
-            child: CarouselSlider.builder(
-              itemCount: movies.length,
-              itemBuilder:
-                  (BuildContext context, int itemIndex, int pageViewIndex) {
-                return CachedNetworkImage(
-                  imageUrl: '$imageURL${movies[itemIndex].poster}',
+    return SizedBox(
+      height: 620.h,
+      width: 390.w,
+      child: PageStorage(
+        bucket: bucket,
+        child: CarouselSlider.builder(
+          itemCount: movies.length,
+          itemBuilder:
+              (BuildContext context, int itemIndex, int pageViewIndex) {
+            final selectedMovie = movies[itemIndex];
+            return Hero(
+              tag: selectedMovie,
+              child: GestureDetector(
+                onTap: () {
+                  ref.watch(heroTagProvider.notifier).state = selectedMovie;
+                  ref.watch(onNavigateTo.notifier).state = 'discoveredMovies';
+                  ref.watch(movieID.notifier).state = selectedMovie.movieID;
+                  ref.watch(movieIndex.notifier).state = itemIndex;
+                  context.go('/description');
+                },
+                child: CachedNetworkImage(
+                  imageUrl: '$imageURL${selectedMovie.poster}',
                   imageBuilder: (context, image) => Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(90.r),
@@ -57,7 +60,7 @@ class HomePageCarousel extends ConsumerWidget {
                     ),
                   ),
                   placeholder: (context, url) => Container(
-                    height: 590.h,
+                    height: 620.h,
                     width: 390.w,
                     decoration: BoxDecoration(
                       color: Colors.black54,
@@ -70,36 +73,35 @@ class HomePageCarousel extends ConsumerWidget {
                     ),
                   ),
                   errorWidget: (context, url, error) => Container(
-                    height: 590.h,
+                    height: 620.h,
                     width: 390.w,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(90.r),
                     ),
                   ),
-                );
-              },
-              options: CarouselOptions(
-                pageViewKey: const PageStorageKey('home'),
-                scrollDirection: Axis.horizontal,
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                pauseAutoPlayOnTouch: true,
-                autoPlayInterval: const Duration(seconds: 5),
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                enlargeCenterPage: true,
-                viewportFraction: 1,
-                aspectRatio: 0.1,
-                onPageChanged: (index, reason) {
-                  ref.watch(movieIndex.notifier).state = index;
-                  ref.watch(previousMovieIndex.notifier).state =
-                      _currentMovieIndex;
-
-                  // ref.watch(isChanged.notifier).state = !pageChanged;
-                  // print(pageChanged);
-                },
+                ),
               ),
-            ),
+            );
+          },
+          options: CarouselOptions(
+            pageViewKey: const PageStorageKey('home'),
+            scrollDirection: Axis.horizontal,
+            enableInfiniteScroll: true,
+            autoPlay: true,
+            pauseAutoPlayOnTouch: true,
+            autoPlayInterval: const Duration(seconds: 5),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            enlargeCenterPage: true,
+            viewportFraction: 1,
+            aspectRatio: 0.1,
+            onPageChanged: (index, reason) {
+              ref.watch(movieIndex.notifier).state = index;
+              ref.watch(previousMovieIndex.notifier).state = _currentMovieIndex;
+
+              // ref.watch(isChanged.notifier).state = !pageChanged;
+              // print(pageChanged);
+            },
           ),
         ),
       ),

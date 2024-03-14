@@ -7,4 +7,6 @@ class MovieWatchProvidersVm {
   String get backDropPaths {
     return watchProviders!.logoPath!;
   }
+
+  
 }

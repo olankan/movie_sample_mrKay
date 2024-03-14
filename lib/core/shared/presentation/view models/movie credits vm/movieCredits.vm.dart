@@ -2,17 +2,20 @@ import '../../../domain/models/movie credits model/movieCredits.model.dart';
 
 class MovieCreditsVm {
   final Cast? cast;
-  MovieCreditsVm({this.cast});
+  final Crew? crew;
 
-  String get name {
-    return cast!.name!;
+  MovieCreditsVm({this.cast, this.crew});
+  String? get castName => cast?.name ?? '';
+
+  String? get castPoster => cast?.profilePath ?? '';
+
+  String? get castCharacter {
+    return cast?.character ?? '';
   }
 
-  String get poster {
-    return cast!.profilePath!;
-  }
+  String? get crewName => crew?.name;
 
-  String get character {
-    return cast!.character!;
-  }
+  String? get crewPoster => crew?.profilePath ;
+
+  String? get crewJob => crew?.job;
 }

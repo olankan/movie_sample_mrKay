@@ -9,7 +9,7 @@ class MoviesVm {
     return movie!.title ?? movie!.name!;
   }
 
-  DateTime get releaseDate {
+  String get releaseDate {
     return movie!.releaseDate ?? movie!.firstAirDate!;
   }
 
@@ -41,7 +41,7 @@ class MoviesVm {
     return movie!.popularity!;
   }
 
-  DateTime get year {
+String get year {
     return movie!.releaseDate!;
   }
 

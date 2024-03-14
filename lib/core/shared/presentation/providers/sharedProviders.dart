@@ -15,9 +15,11 @@ final movieProvider = FutureProvider<List<MoviesVm>>((ref) async {
 });
 
 final movieIndex = StateProvider<int?>((ref) => 0);
+final movieID = StateProvider<int?>((ref) => 0);
 final previousMovieIndex = StateProvider<int?>((ref) => -1);
 final onNotify = StateProvider<bool>((ref) => false);
 final navIndex = StateProvider<int>((ref) => 0);
 final movieDescriptionProvider = StateProvider<int>((ref) => 0);
 final onPressed = StateProvider<bool>((ref) => false);
+final heroTagProvider = StateProvider<dynamic>((ref) => '');
 // final isChanged = StateProvider<bool>((ref) => true);

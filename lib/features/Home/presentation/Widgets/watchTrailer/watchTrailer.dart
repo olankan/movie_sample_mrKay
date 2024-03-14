@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_sample/core/shared/presentation/providers/sharedProviders.dart';
 import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';
 
-class WatchTrailer extends StatelessWidget {
+class WatchTrailer extends ConsumerWidget {
   const WatchTrailer({
     super.key,
     required int? currentMovieIndex,
@@ -14,9 +16,12 @@ class WatchTrailer extends StatelessWidget {
   final int? _currentMovieIndex;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => context.go('/description'),
+      // onTap: () { ref.watch(heroTagProvider.notifier).state = selectedMovie;
+      
+                 
+                  // context.go('/description');} ,
       child: CustomContainer(
         key: Key('$_currentMovieIndex'),
         width: 118.w,

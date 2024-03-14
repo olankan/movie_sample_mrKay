@@ -32,8 +32,8 @@ class UltimateResultModel {
   final String? overview;
   final double? popularity;
   final String? posterPath;
-  final DateTime? firstAirDate;
-  final DateTime? releaseDate;
+  final String? firstAirDate;
+  final String? releaseDate;
   final String? name;
   final String? title;
   final double? voteAverage;
@@ -64,15 +64,11 @@ class UltimateResultModel {
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
         posterPath: json["poster_path"],
-        firstAirDate: json["first_air_date"] == null
-            ? null
-            : DateTime.parse(json["first_air_date"]),
+        firstAirDate: json["first_air_date"],
         name: json["name"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
-        releaseDate: json["release_date"] == null
-            ? null
-            : DateTime.parse(json["release_date"]),
+        releaseDate: json["release_date"],
         title: json["title"],
       );
 
@@ -84,13 +80,11 @@ class UltimateResultModel {
         "overview": overview,
         "popularity": popularity,
         "poster_path": posterPath,
-        "first_air_date":
-            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
+        "first_air_date": firstAirDate,
         "name": name,
         "vote_average": voteAverage,
         "vote_count": voteCount,
-        "release_date":
-            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
+        "release_date": releaseDate,
         "title": title,
       };
 }

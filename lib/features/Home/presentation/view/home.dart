@@ -94,8 +94,8 @@ class HomeNew extends ConsumerWidget {
                       SizedBox(
                         height: 79.h,
                       ),
-                      Hero(
-                        tag: 'header',
+                      Padding(
+                        padding: const EdgeInsets.only(left:20.0).r,
                         child: MovieInfoHeader(
                             selectedMovie: selectedMovie,
                             isNotified: isNotified),

@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-
 import 'package:movie_sample/core/shared/data/repository/fetchedApiCallService/fetchedApiCallService.dart';
 import 'package:movie_sample/core/shared/domain/repository/fetchedMoviesListServiceInterface/fetchedMoviesListServiceInterface.dart';
 import 'package:movie_sample/core/shared/presentation/view%20models/movie%20credits%20vm/movieCredits.vm.dart';
@@ -11,8 +10,7 @@ import 'package:movie_sample/core/shared/presentation/view%20models/movie_watch%
 import '../../../presentation/view models/movies vm/moviesVm.dart';
 
 class FetchedMoviesListService implements FetchedMoviesListServiceInterface {
-  final FetchedMoviesApiService _fetchedApiMovies =   FetchedMoviesApiService();
-
+  final FetchedMoviesApiService _fetchedApiMovies = FetchedMoviesApiService();
 
   @override
   Future<List<MoviesVm>> getFetchedAiringTodayList() async {
@@ -27,7 +25,7 @@ class FetchedMoviesListService implements FetchedMoviesListServiceInterface {
   }
 
   @override
-  Future<List<MovieCreditsVm>> getFetchedMovieCreditsList(id) async {
+  Future<List<MovieCreditsVm>> getFetchedMovieCastCreditsList(id) async {
     var res = await _fetchedApiMovies.getFetchedMovieCredits(id);
     return res!.cast!.map((e) => MovieCreditsVm(cast: e)).toList();
   }
@@ -105,5 +103,11 @@ class FetchedMoviesListService implements FetchedMoviesListServiceInterface {
   Future<List<MoviesVm>> getFetchedUpcomingMoviesList() async {
     var res = await _fetchedApiMovies.getFetchedUpcomingMovies();
     return res!.results!.map((e) => MoviesVm(movie: e)).toList();
+  }
+
+  @override
+  Future<List<MovieCreditsVm>> getFetchedMovieCrewCreditsList(id) async {
+    var res = await _fetchedApiMovies.getFetchedMovieCredits(id);
+    return res!.crew!.map((e) => MovieCreditsVm(crew: e)).toList();
   }
 }

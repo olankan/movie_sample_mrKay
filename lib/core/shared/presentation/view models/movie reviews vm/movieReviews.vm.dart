@@ -1,32 +1,32 @@
 import 'package:movie_sample/core/shared/domain/models/movie%20reviews%20model/movieReviews.model.dart';
 
-
-
 class MovieReviewsVm {
-  final Result? review;
+  final Review? review;
   MovieReviewsVm({this.review});
 
-  String get authorName {
+  String? get authorName {
     return review!.authorDetails!.name!.isEmpty
-        ? review!.authorDetails!.username!
-        : review!.authorDetails!.name!;
+        ? review!.authorDetails!.username
+        : review!.authorDetails!.name;
   }
 
-  DateTime get reviewDate {
-    return review!.updatedAt!;
+  String? get reviewDate {
+    return review!.updatedAt;
   }
 
-  String get authorContent {
-    return review!.content!;
+  String? get authorContent {
+    return review!.content;
   }
 
-  String get authorImage {
-    return review!.authorDetails!.avatarPath!;
+  String? get author {
+    return review!.author;
   }
 
-  int get rating {
-    return review!.authorDetails!.rating!;
+  String? get authorImage {
+    return review!.authorDetails!.avatarPath;
   }
 
-
+  double? get authorRating {
+    return review!.authorDetails!.rating;
+  }
 }

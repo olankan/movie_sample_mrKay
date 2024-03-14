@@ -49,43 +49,40 @@ class GlassmorphicBackground extends ConsumerWidget {
         children: [
           SizedBox(
             height: 450.h,
-            child: Hero(
-              tag: 'movie image',
-              child: CachedNetworkImage(
-                imageUrl: '$imageURL${movies.poster}',
-                imageBuilder: (context, image) => Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(90),
-                      bottomRight: Radius.circular(90),
-                    ),
-                    image: DecorationImage(
-                      image: image,
-                      fit: BoxFit.fill,
-                    ),
+            child: CachedNetworkImage(
+              imageUrl: '$imageURL${movies.poster}',
+              imageBuilder: (context, image) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(90),
+                    bottomRight: Radius.circular(90),
+                  ),
+                  image: DecorationImage(
+                    image: image,
+                    fit: BoxFit.fill,
                   ),
                 ),
-                placeholder: (context, url) => Container(
-                  height: 400.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(90),
-                      bottomRight: Radius.circular(90),
-                    ),
-                    color: Colors.black54,
+              ),
+              placeholder: (context, url) => Container(
+                height: 400.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(90),
+                    bottomRight: Radius.circular(90),
                   ),
-                  child: Transform.scale(
-                    scale: 1.3,
-                    child: const Center(
-                        child: CupertinoActivityIndicator(color: Colors.red)),
-                  ),
+                  color: Colors.black54,
                 ),
-                errorWidget: (context, url, error) => Container(
-                  height: 400.h,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(90.r),
-                  ),
+                child: Transform.scale(
+                  scale: 1.3,
+                  child: const Center(
+                      child: CupertinoActivityIndicator(color: Colors.red)),
+                ),
+              ),
+              errorWidget: (context, url, error) => Container(
+                height: 400.h,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(90.r),
                 ),
               ),
             ),
@@ -93,10 +90,8 @@ class GlassmorphicBackground extends ConsumerWidget {
           SizedBox(
             height: 10.h,
           ),
-          Hero(
-              tag: 'header',
-              child: MovieInfoHeader(
-                  selectedMovie: movies, isNotified: isNotified)),
+          MovieInfoHeader(
+              selectedMovie: movies, isNotified: isNotified),
           // Text()
 
           // CarouselSlider.builder(itemCount: genreMovies.length, itemBuilder: itemBuilder, options: options)

@@ -8,7 +8,8 @@ import 'package:device_preview/device_preview.dart';
 void main() {
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
+      // enabled: true, 
       builder: (BuildContext context) => ProviderScope(child: MyApp()),
     ),
   );

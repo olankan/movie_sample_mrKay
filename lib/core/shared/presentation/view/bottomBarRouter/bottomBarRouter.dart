@@ -28,7 +28,7 @@ class BottomNavBarRouter extends ConsumerWidget {
                   MyFutureBuilder(),
           // const ProfilePage(),
           Positioned(
-            top: 824.h,
+            top: 860.h,
             left: 20.w,
             child: BottomNavBar(selectedNavIndex: selectedNavIndex),
           ),

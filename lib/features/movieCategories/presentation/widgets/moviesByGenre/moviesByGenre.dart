@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
 import 'package:movie_sample/features/movieCategories/presentation/providers/movieCategoriesProvider.dart';
 import '../../../../../core/resources/constants.dart';
+import '../../../../../core/shared/presentation/providers/sharedProviders.dart';
 import '../../providers/moviesByGenreProvider.dart';
 
 class MoviesByGenre extends ConsumerWidget {
@@ -19,26 +20,27 @@ class MoviesByGenre extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final moviesByGenre = ref.watch(movieByGenreProvider);
     final selectedGenreType = ref.watch(movieGenreType);
+    final movieVmAsHeroTag = ref.watch(heroTagProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           key: Key(selectedGenreType),
-          padding: const EdgeInsets.only(left: 2.0).r,
+          padding: const EdgeInsets.only(left: 2.0, bottom: 2).r,
           child: RichText(
                   text: TextSpan(children: [
             TextSpan(
                 text: selectedGenreType,
                 style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: fontFamily,
                     fontSize: 20.sp)),
             TextSpan(
                 text: ' movies',
                 style: TextStyle(
-                    color: Colors.white.withOpacity(0.6),
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: fontFamily,
                     fontSize: 20.sp))
@@ -48,11 +50,12 @@ class MoviesByGenre extends ConsumerWidget {
         ),
         moviesByGenre.when(
           data: (genreMovies) {
+            // genreMovies.shuffle();
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 215.0.h,
+                  height: 175.0.h,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: genreMovies.length,
@@ -64,57 +67,68 @@ class MoviesByGenre extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                ref.watch(onNavigateToMoviesByGenre.notifier).state = true;
+                                print(movie.movieID);
+                                ref.watch(movieID.notifier).state =
+                                    movie.movieID;
+                                    ref.watch(heroTagProvider.notifier).state =
+                                    movie;
+                                ref.watch(movieIndex.notifier).state = index;
+                                ref.watch(onNavigateTo.notifier).state =
+                                    'moviesByGenre';
                                 context.go('/description');
                               },
                               child: Column(
                                 children: [
-                                  CachedNetworkImage(
-                                    imageUrl: '$imageURL${movie.poster}',
-                                    imageBuilder: (context, image) => Container(
-                                      height: 150.h,
-                                      width: 130.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                        image: DecorationImage(
-                                          image: image,
-                                          fit: BoxFit.fill,
+                                     Hero(
+                                    tag: movie,
+                                    child: CachedNetworkImage(
+                                      imageUrl: '$imageURL${movie.poster}',
+                                      imageBuilder: (context, image) =>
+                                       Container(
+                                                                             height: 150.h,
+                                                                             width: 130.w,
+                                                                             decoration: BoxDecoration(
+                                       borderRadius:
+                                           BorderRadius.circular(15.r),
+                                       image: DecorationImage(
+                                         image: image,
+                                         fit: BoxFit.fill,
+                                       ),
+                                                                             ),
+                                                                           ),
+                                      placeholder: (context, url) => Container(
+                                        height: 150.h,
+                                        width: 130.w,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black26,
+                                          borderRadius:
+                                              BorderRadius.circular(15.r),
+                                        ),
+                                        child: Transform.scale(
+                                          scale: 1.3,
+                                          child: const Center(
+                                              child: CupertinoActivityIndicator(
+                                                  color: Colors.red)),
                                         ),
                                       ),
-                                    ),
-                                    placeholder: (context, url) => Container(
-                                      height: 150.h,
-                                      width: 130.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black26,
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
+                                      errorWidget: (context, url, error) =>
+                                          Container(
+                                        height: 150.h,
+                                        width: 130.w,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          borderRadius:
+                                              BorderRadius.circular(15.r),
+                                        ),
                                       ),
-                                      child: Transform.scale(
-                                        scale: 1.3,
-                                        child: const Center(
-                                            child: CupertinoActivityIndicator(
-                                                color: Colors.red)),
-                                      ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
-                                      height: 150.h,
-                                      width: 130.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                      ),
-                                    ),
-                                  ).animate().fadeIn(
-                                      begin: 0.5,
-                                      duration: 1000.ms,
-                                      curve: Curves.easeInOutCubic),
+                                    ).animate().fadeIn(
+                                        begin: 0.5,
+                                        duration: 1000.ms,
+                                        curve: Curves.easeInOutCubic),
+                                  ),
                                   SizedBox(
                                       key: Key(movie.title),
-                                      height: 18.h,
+                                      height: 20.h,
                                       width: 118.w,
                                       child: movie.title.length > 16
                                           ? Center(
@@ -126,7 +140,7 @@ class MoviesByGenre extends ConsumerWidget {
                                                   fontSize: 14.sp,
                                                   // fontWeight: FontWeight.w900,
                                                   color: Colors.white
-                                                      .withOpacity(0.8),
+                                                      ,
                                                 ),
                                                 blankSpace: 20.0,
                                                 accelerationDuration: 200.ms,
@@ -145,19 +159,22 @@ class MoviesByGenre extends ConsumerWidget {
                                                   fontFamily: fontFamily,
                                                   fontWeight: FontWeight.w600,
                                                   color: Colors.white
-                                                      .withOpacity(0.8),
+                                                      ,
                                                 ),
                                               ).animate().fadeIn(
                                                   begin: 0.5,
                                                   duration: 500.ms,
                                                   curve: Curves.easeInOut),
                                             )),
+                                  SizedBox(
+                                    height: 5.h,
+                                  )
                                 ],
                               ),
                             ),
                             SizedBox(
-                              width: 5.w,
-                            ),
+                              width: 5.h,
+                            )
                           ],
                         );
                       }),
@@ -167,8 +184,8 @@ class MoviesByGenre extends ConsumerWidget {
           },
           loading: () {
             return Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 90).r,
+              child: SizedBox(
+                height: 175.0.h,
                 child: Transform.scale(
                   scale: 1.3,
                   child: const Center(
@@ -179,17 +196,8 @@ class MoviesByGenre extends ConsumerWidget {
           },
           error: (Object error, StackTrace stackTrace) {
             return Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4).r,
-                height: 550.h,
-                width: 450.w,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(15).r,
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.8),
-                  ),
-                ),
+              child: SizedBox(
+                height: 175.0.h,
                 child: SingleChildScrollView(child: Text(' $stackTrace')),
               ),
             );
