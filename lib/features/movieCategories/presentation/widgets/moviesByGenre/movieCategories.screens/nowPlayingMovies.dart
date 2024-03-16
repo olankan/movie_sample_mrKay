@@ -65,7 +65,81 @@ class NowPlayingMovies extends ConsumerWidget {
                                 ref.watch(movieIndex.notifier).state = index;
                                 context.go('/description');
                               },
-                              child: Column(
+                              child: selectedMovie.poster == null
+                                    ? Column(
+                                        children: [
+                                          Hero(
+                                            tag: selectedMovie,
+                                            child: Container(
+                                                       height: 150.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black.withOpacity(0.2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r),
+                                                  ),
+                                                  child: Center(
+                                                      child: Icon(
+                                                          Icons
+                                                              .image_not_supported_outlined,
+                                                          color: Colors.white.withOpacity(0.3),
+                                                          size: 50)),
+                                                ).animate().fadeIn(
+                                                begin: 0.5,
+                                                duration: 1000.ms,
+                                                curve: Curves.easeInOutCubic),
+                                          ),
+                                          SizedBox(
+                                              key: Key(selectedMovie.title),
+                                              height: 20.h,
+                                              width: 118.w,
+                                              child: selectedMovie.title.length > 16
+                                                  ? Center(
+                                                      child: Marquee(
+                                                        text: selectedMovie.title,
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              fontFamily,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 14.sp,
+                                                          // fontWeight: FontWeight.w900,
+                                                          color: Colors.white,
+                                                        ),
+                                                        blankSpace: 20.0,
+                                                        accelerationDuration:
+                                                            200.ms,
+                                                        pauseAfterRound: 200.ms,
+                                                      ).animate().fadeIn(
+                                                          begin: 0.5,
+                                                          duration: 500.ms,
+                                                          curve:
+                                                              Curves.easeInOut),
+                                                    )
+                                                  : //
+                                                  Center(
+                                                      child: Text(
+                                                        selectedMovie.title,
+                                                        style: TextStyle(
+                                                          fontSize: 14.sp,
+                                                          fontFamily:
+                                                              fontFamily,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ).animate().fadeIn(
+                                                          begin: 0.5,
+                                                          duration: 500.ms,
+                                                          curve:
+                                                              Curves.easeInOut),
+                                                    )),
+                                          SizedBox(
+                                            height: 5.h,
+                                          )
+                                        ],
+                                      ) : Column(
                                 children: [
                                  Hero(
                                     tag: selectedMovie,

@@ -4,9 +4,10 @@ class MovieWatchProvidersVm {
   final Buy? watchProviders;
   MovieWatchProvidersVm({this.watchProviders});
 
-  String get backDropPaths {
-    return watchProviders!.logoPath!;
-  }
+String? get backDropPaths {
+  return watchProviders?.logoPath;
+}
+
 
   
 }

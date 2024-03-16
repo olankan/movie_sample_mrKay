@@ -14,7 +14,7 @@ import '../../../../../core/resources/constants.dart';
 import '../../../../../core/shared/data/repository/genreRepoImpl/genre_Repository_impl.dart';
 import '../../../../../core/shared/presentation/reuasable widgets/customContainer/customContainer.dart';
 import '../../providers/moviesByGenreProvider.dart';
-import '../../widgets/moviesByGenre/moviesByGenre.dart';
+import '../../widgets/moviesByGenre/movieCategories.screens/moviesByGenre.dart';
 
 class MovieCategoriesScreen extends ConsumerWidget {
   const MovieCategoriesScreen({super.key});

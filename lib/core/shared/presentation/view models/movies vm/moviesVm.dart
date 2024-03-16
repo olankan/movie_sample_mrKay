@@ -17,16 +17,16 @@ class MoviesVm {
     return movie!.genreIds!;
   }
 
-  String get poster {
-    return movie!.posterPath ?? '';
+  String? get poster {
+    return movie!.posterPath;
   }
 
-  String get backdropPath {
-    return movie!.backdropPath ?? '';
+  String? get backdropPath {
+    return movie!.backdropPath;
   }
 
   String get overview {
-    return movie!.overview ?? '';
+    return movie!.overview!;
   }
 
   double get rating {

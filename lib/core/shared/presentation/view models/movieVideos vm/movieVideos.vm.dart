@@ -5,20 +5,21 @@ class MovieVideoVm {
 
   MovieVideoVm({this.video});
 
-  String? get key {
-    // Check if video is null
-    if (video == null) {
-      return null;
-    }
+  String? get key =>  video!.key;
 
-    // Check if video is a trailer and official
-    if (video!.type == "Trailer" && video!.official == true) {
-      return video!.key;
-    } else {
-      return null;
-    }
-  }
+ String? get type =>  video!.type;
+
+
+
+
+  bool? get official =>  video!.official;
 }
+
+
+
+
+
+
 
 
 

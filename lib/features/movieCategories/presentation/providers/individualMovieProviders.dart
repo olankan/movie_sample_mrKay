@@ -123,7 +123,7 @@ final movieWatchProvider = FutureProvider<List<MovieWatchProvidersVm>>((ref) asy
     return await _fetchedMoviesListService.getFetchedMovieWatchProvidersList(id);
   } catch (e, stackTrace) {
     print('Error fetching movie watch list: $e\n$stackTrace');
-    return [];
+    return [];  
   }
 });
 

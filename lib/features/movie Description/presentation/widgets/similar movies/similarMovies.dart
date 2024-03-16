@@ -66,6 +66,7 @@ class SimilarMovies extends ConsumerWidget {
                             itemBuilder: (BuildContext context, int index) {
                               final selectedMovie = movies[index];
 
+
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -78,122 +79,220 @@ class SimilarMovies extends ConsumerWidget {
                                       // ref.watch(movieIndex.notifier).state = index;
                                       // context.go('/description');
                                     },
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        CachedNetworkImage(
-                                          imageUrl:
-                                              '$imageURL${selectedMovie.poster}',
-                                          imageBuilder: (context, image) =>
-                                              Container(
-                                            height: 180.h,
-                                            width: 130.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.r),
-                                              image: DecorationImage(
-                                                image: image,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
-                                          placeholder: (context, url) =>
-                                              Container(
-                                            height: 180.h,
-                                            width: 130.w,
-                                            decoration: BoxDecoration(
-                                              color: Colors.black26,
-                                              borderRadius:
-                                                  BorderRadius.circular(15.r),
-                                            ),
-                                            child: Transform.scale(
-                                              scale: 1.3,
-                                              child: Center(
-                                                  child:
-                                                      CupertinoActivityIndicator(
-                                                          color: Colors.white
-                                                              .withOpacity(
-                                                                  0.8))),
-                                            ),
-                                          ),
-                                          errorWidget: (context, url, error) =>
-                                              Container(
-                                            height: 180.h,
-                                            width: 130.w,
-                                            decoration: BoxDecoration(
-                                              color: Colors.black,
-                                              borderRadius:
-                                                  BorderRadius.circular(15.r),
-                                            ),
-                                          ),
-                                        ).animate().fadeIn(
-                                            begin: 0.5,
-                                            duration: 1000.ms,
-                                            curve: Curves.easeInOutCubic),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.star,
-                                                    color: Colors.yellow,
-                                                    size: 18.r)
-                                                .animate()
-                                                .fadeIn(
+                                    child: selectedMovie.poster == null
+                                        ? Column(
+                                            children: [
+                                              Hero(
+                                                tag: selectedMovie,
+                                                child: Container(
+                                                       height: 180.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black.withOpacity(0.2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r),
+                                                  ),
+                                                  child: Center(
+                                                      child: Icon(
+                                                          Icons
+                                                              .image_not_supported_outlined,
+                                                          color: Colors.white.withOpacity(0.3),
+                                                          size: 50)),
+                                                ).animate().fadeIn(
                                                     begin: 0.5,
                                                     duration: 1000.ms,
                                                     curve:
                                                         Curves.easeInOutCubic),
-                                            Text(
-                                              '${selectedMovie.rating.roundToDouble()}/10',
-                                              // textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: fontFamily,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 12.sp,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                            key: Key(selectedMovie.title),
-                                            height: 18.h,
-                                            width: 118.w,
-                                            child: selectedMovie.title.length >
-                                                    16
-                                                ? Marquee(
-                                                    text: selectedMovie.title,
+                                              SizedBox(
+                                                  key: Key(selectedMovie.title),
+                                                  height: 20.h,
+                                                  width: 118.w,
+                                                  child: selectedMovie
+                                                              .title.length >
+                                                          16
+                                                      ? Center(
+                                                          child: Marquee(
+                                                            text: selectedMovie
+                                                                .title,
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  fontFamily,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 14.sp,
+                                                              // fontWeight: FontWeight.w900,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                            blankSpace: 20.0,
+                                                            accelerationDuration:
+                                                                200.ms,
+                                                            pauseAfterRound:
+                                                                200.ms,
+                                                          ).animate().fadeIn(
+                                                              begin: 0.5,
+                                                              duration: 500.ms,
+                                                              curve: Curves
+                                                                  .easeInOut),
+                                                        )
+                                                      : //
+                                                      Center(
+                                                          child: Text(
+                                                            selectedMovie.title,
+                                                            style: TextStyle(
+                                                              fontSize: 14.sp,
+                                                              fontFamily:
+                                                                  fontFamily,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ).animate().fadeIn(
+                                                              begin: 0.5,
+                                                              duration: 500.ms,
+                                                              curve: Curves
+                                                                  .easeInOut),
+                                                        )),
+                                              SizedBox(
+                                                height: 5.h,
+                                              )
+                                            ],
+                                          )
+                                        : Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CachedNetworkImage(
+                                                imageUrl:
+                                                    '$imageURL${selectedMovie.poster}',
+                                                imageBuilder:
+                                                    (context, image) =>
+                                                        Container(
+                                                  height: 180.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r),
+                                                    image: DecorationImage(
+                                                      image: image,
+                                                      fit: BoxFit.fill,
+                                                    ),
+                                                  ),
+                                                ),
+                                                placeholder: (context, url) =>
+                                                    Container(
+                                                  height: 180.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black26,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r),
+                                                  ),
+                                                  child: Transform.scale(
+                                                    scale: 1.3,
+                                                    child: Center(
+                                                        child:
+                                                            CupertinoActivityIndicator(
+                                                                color: Colors
+                                                                    .white
+                                                                    .withOpacity(
+                                                                        0.8))),
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Container(
+                                                  height: 180.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r),
+                                                  ),
+                                                ),
+                                              ).animate().fadeIn(
+                                                  begin: 0.5,
+                                                  duration: 1000.ms,
+                                                  curve: Curves.easeInOutCubic),
+                                              Row(
+                                                children: [
+                                                  Icon(Icons.star,
+                                                          color: Colors.yellow,
+                                                          size: 18.r)
+                                                      .animate()
+                                                      .fadeIn(
+                                                          begin: 0.5,
+                                                          duration: 1000.ms,
+                                                          curve: Curves
+                                                              .easeInOutCubic),
+                                                  Text(
+                                                    '${selectedMovie.rating.roundToDouble()}/10',
+                                                    // textAlign: TextAlign.center,
                                                     style: TextStyle(
+                                                      color: Colors.white,
                                                       fontFamily: fontFamily,
                                                       fontWeight:
                                                           FontWeight.w600,
-                                                      fontSize: 14.sp,
-                                                      // fontWeight: FontWeight.w900,
-                                                      color: Colors.white,
+                                                      fontSize: 12.sp,
                                                     ),
-                                                    blankSpace: 20.0,
-                                                    accelerationDuration:
-                                                        200.ms,
-                                                    pauseAfterRound: 200.ms,
-                                                  ).animate().fadeIn(
-                                                    begin: 0.5,
-                                                    duration: 500.ms,
-                                                    curve: Curves.easeInOut)
-                                                : //
-                                                Text(
-                                                    selectedMovie.title,
-                                                    style: TextStyle(
-                                                      fontSize: 14.sp,
-                                                      fontFamily: fontFamily,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ).animate().fadeIn(
-                                                    begin: 0.5,
-                                                    duration: 500.ms,
-                                                    curve: Curves.easeInOut)),
-                                      ],
-                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                  key: Key(selectedMovie.title),
+                                                  height: 18.h,
+                                                  width: 118.w,
+                                                  child: selectedMovie
+                                                              .title.length >
+                                                          16
+                                                      ? Marquee(
+                                                          text: selectedMovie
+                                                              .title,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                fontFamily,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 14.sp,
+                                                            // fontWeight: FontWeight.w900,
+                                                            color: Colors.white,
+                                                          ),
+                                                          blankSpace: 20.0,
+                                                          accelerationDuration:
+                                                              200.ms,
+                                                          pauseAfterRound:
+                                                              200.ms,
+                                                        ).animate().fadeIn(
+                                                          begin: 0.5,
+                                                          duration: 500.ms,
+                                                          curve:
+                                                              Curves.easeInOut)
+                                                      : //
+                                                      Text(
+                                                          selectedMovie.title,
+                                                          style: TextStyle(
+                                                            fontSize: 14.sp,
+                                                            fontFamily:
+                                                                fontFamily,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ).animate().fadeIn(
+                                                          begin: 0.5,
+                                                          duration: 500.ms,
+                                                          curve: Curves
+                                                              .easeInOut)),
+                                            ],
+                                          ),
                                   ),
                                   SizedBox(
                                     width: 5.w,

@@ -4,6 +4,7 @@ import 'package:movie_sample/core/shared/presentation/view/bottomBarRouter/botto
 import 'package:movie_sample/features/movie%20Description/presentation/pages/description.dart';
 
 import 'package:movie_sample/features/movie%20Description/presentation/view_mrKay/description/description_mrKay.dart';
+import 'package:movie_sample/features/movie%20Description/presentation/widgets/youtube%20Player/youtubePlayer.dart';
 
 /// The route configuration.
 final GoRouter router = GoRouter(
@@ -17,16 +18,17 @@ final GoRouter router = GoRouter(
           path: 'description2',
           builder: (BuildContext context, GoRouterState state) =>
               const MrKayMovieDescription(),
-        ), GoRoute(
+        ),
+        GoRoute(
           path: 'description',
           builder: (BuildContext context, GoRouterState state) =>
               const MovieDescription(),
         ),
-        // GoRoute(
-        //   path: 'movie categories',
-        //   builder: (BuildContext context, GoRouterState state) =>
-        //     const  MovieCategoriesScreen(),
-        // ),
+        GoRoute(
+          path: 'youtube',
+          builder: (BuildContext context, GoRouterState state) =>
+              const YoutubeTrailerPlayer(),
+        ),
       ],
     ),
   ],

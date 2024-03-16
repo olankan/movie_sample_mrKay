@@ -9,12 +9,14 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/MovieInfoHeader/movieInfoHeader.dart';
+import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/customContainer/customContainer.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/Cast%20character/castCharacter.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/Crew%20character/crewCharacter.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/Recommended%20movies/recommendedmovies.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/Watch%20Providers/watchProviders.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/movie%20review%20card/movieReviewCard.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/widgets/similar%20movies/similarMovies.dart';
+import 'package:movie_sample/features/movie%20Description/presentation/widgets/youtube%20Player/youtubePlayer.dart';
 import 'package:movie_sample/features/movieCategories/presentation/providers/individualMovieProviders.dart';
 import '../../../../core/resources/constants.dart';
 import '../../../../core/shared/presentation/providers/sharedProviders.dart';
@@ -179,7 +181,7 @@ class MovieDescription extends StatelessWidget {
                                     height: 10.h,
                                   ),
                                   Text(
-                                    selectedMovie.overview,
+                                    selectedMovie.overview!,
                                     style: TextStyle(
                                       fontFamily: fontFamily,
                                       fontSize: 15.sp,
@@ -647,6 +649,45 @@ class MovieDescription extends StatelessWidget {
                           ),
                     ),
                   ),
+                  Positioned(
+                    top: 190.h,
+                    left: 180.w,
+                    child: GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Stack(
+                                children: [
+                                  Container(
+                                    height: 450.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black ,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(90).r,
+                                        bottomRight: Radius.circular(90).r,
+                                      ),
+                                    ),
+                                  ),
+                                  YoutubeTrailerPlayer(),
+                                ],
+                              );
+                            },
+                          );
+                          // context.go('/youtube');
+                        },
+                        child: CustomContainer(
+                            width: 80.w,
+                            height: 50.h,
+                            backgroundColor: Colors.red,
+                            child: Center(
+                                child: Icon(
+                              Icons.play_arrow_rounded,
+                              size: 40,
+                              color: Colors.white,
+                            )))),
+                  )
                 ],
               ));
         },
