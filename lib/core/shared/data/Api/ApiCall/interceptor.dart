@@ -18,7 +18,7 @@ class LogManagerInterceptor extends InterceptorsWrapper {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
 
     debugPrint('----------:API REQUEST:----------');
-if(response.requestOptions.uri.path.contains('/reviews')){
+if(response.requestOptions.uri.path.contains('/videos')){
 
 
     debugPrint('---Requests uri: ${response.requestOptions.uri}\n');

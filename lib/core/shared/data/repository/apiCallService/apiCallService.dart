@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:dio/dio.dart';
+import 'package:movie_sample/core/shared/data/Api/ApiCall/movieApi2.dart';
 import 'package:movie_sample/core/shared/data/Api/ApiCall/movieApiService.dart';
 
 import '../../../../resources/constants.dart';

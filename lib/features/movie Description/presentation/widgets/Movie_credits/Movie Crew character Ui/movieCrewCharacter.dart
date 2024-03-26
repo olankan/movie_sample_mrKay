@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_sample/core/resources/constants.dart';
+import 'package:movie_sample/core/shared/presentation/view%20models/movie%20credits%20vm/movieCredits.vm.dart';
 
-import '../../../../../core/resources/constants.dart';
-import '../../../../../core/shared/presentation/view models/movie credits vm/movieCredits.vm.dart';
 
 class CrewCharacter extends StatelessWidget {
   const CrewCharacter({

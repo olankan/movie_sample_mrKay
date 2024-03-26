@@ -5,7 +5,9 @@ class MovieWatchProvidersVm {
   MovieWatchProvidersVm({this.watchProviders});
 
 String? get backDropPaths {
-  return watchProviders?.logoPath;
+  print('here is ${watchProviders!.logoPath}');
+  return watchProviders!.logoPath;
+
 }
 
 

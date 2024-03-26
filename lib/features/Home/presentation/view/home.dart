@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:movie_sample/core/resources/constants.dart';
 import 'package:movie_sample/core/shared/presentation/providers/sharedProviders.dart';
+import 'package:movie_sample/core/shared/presentation/reuasable%20widgets/glassmorphicBackground/glassmorphicBackground.dart';
 import '../../../../core/shared/presentation/reuasable widgets/MovieInfoHeader/movieInfoHeader.dart';
 import '../Widgets/homePageCarousel/homePageCarousel.dart';
 import '../Widgets/watchTrailer/watchTrailer.dart';
@@ -66,36 +67,16 @@ class HomeNew extends ConsumerWidget {
                     ),
                   ),
                 ),
-                GlassmorphicContainer(
+                GlassMorphicBackground(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
-                  borderRadius: 0,
-                  border: 0,
-                  blur: 20,
-                  linearGradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0.2),
-                      Colors.black.withOpacity(0.05),
-                    ],
-                    stops: [0.1, 1],
-                  ),
-                  borderGradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFffffff).withOpacity(0),
-                      Color((0xFFFFFFFF)).withOpacity(0),
-                    ],
-                  ),
                   child: Column(
                     children: [
                       SizedBox(
                         height: 79.h,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:20.0).r,
+                        padding: const EdgeInsets.only(left: 20.0).r,
                         child: MovieInfoHeader(
                             selectedMovie: selectedMovie,
                             isNotified: isNotified),
@@ -125,7 +106,7 @@ class HomeNew extends ConsumerWidget {
                               Icon(
                                 Icons.search,
                                 size: 25.r,
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white,
                               ),
                               SizedBox(width: 15.w),
                               GestureDetector(
@@ -137,7 +118,7 @@ class HomeNew extends ConsumerWidget {
                                   isNotified
                                       ? EvaIcons.bell
                                       : EvaIcons.bellOutline,
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Colors.white,
                                   size: 25.r,
                                 ),
                               ),

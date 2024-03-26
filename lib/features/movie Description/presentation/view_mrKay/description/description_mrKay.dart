@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_sample/features/movie%20Description/presentation/providers/movieDescriptionProviders.dart';
 import '../../../../../core/resources/constants.dart';
 import '../../widgets/arrowBackButton/arrowBackButton.dart';
-import '../../widgets/glassmorphicBackground/glassmorphicBackground.dart';
+import '../../../../../core/shared/presentation/reuasable widgets/glassmorphicBackground/glassmorphicBackground.dart';
 
 class MrKayMovieDescription extends ConsumerWidget {
   const MrKayMovieDescription({super.key});
@@ -48,7 +48,7 @@ class MrKayMovieDescription extends ConsumerWidget {
                 ),
               ),
             ),
-            GlassmorphicBackground(movies: movies),
+            GlassMorphicBackground(),
             ArrowBackButton(),
           ],
         ));

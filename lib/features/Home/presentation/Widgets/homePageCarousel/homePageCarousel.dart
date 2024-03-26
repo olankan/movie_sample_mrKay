@@ -46,6 +46,7 @@ class HomePageCarousel extends ConsumerWidget {
                   ref.watch(onNavigateTo.notifier).state = 'discoveredMovies';
                   ref.watch(movieID.notifier).state = selectedMovie.movieID;
                   ref.watch(movieIndex.notifier).state = itemIndex;
+                  debugPrint(selectedMovie.movieID.toString());
                   context.go('/description');
                 },
                 child: CachedNetworkImage(

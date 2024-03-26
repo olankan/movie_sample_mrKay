@@ -33,7 +33,8 @@ class WatchProviders extends ConsumerWidget {
         ),
         watchProvider.when(
           data: (watchProviders) {
-            return watchProviders.isEmpty || watchProviders == null
+             print('this is sjxsxjn ${watchProviders.length}');
+            return watchProviders.isEmpty
                 ? CustomContainer(
                     height: 50.h,
                     width: double.infinity,
@@ -48,8 +49,8 @@ class WatchProviders extends ConsumerWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     )),
-                  )
-                : SizedBox(
+                  ) 
+                : Container(
                     height: 50.h,
                     width: double.infinity,
                     child: ListView.builder(
@@ -57,16 +58,15 @@ class WatchProviders extends ConsumerWidget {
                         itemCount: watchProviders.length,
                         itemBuilder: (BuildContext context, int index) {
                           final watchProvider = watchProviders[index];
-                          print(watchProviders.length);
-                          return Row(
-                            children: [
+                         
+                          return 
                               watchProvider.backDropPaths == null
                                   ? SizedBox(height: 0, width: 0)
                                   : CachedNetworkImage(
                                       imageUrl:
                                           '$imageURL${watchProvider.backDropPaths}',
                                       imageBuilder: (context, image) =>
-                                          Container(
+                                          Container(margin: EdgeInsets.only(right: 15).r,
                                         height: 50.h,
                                         width: 50.w,
                                         decoration: BoxDecoration(
@@ -78,7 +78,7 @@ class WatchProviders extends ConsumerWidget {
                                           ),
                                         ),
                                       ),
-                                      placeholder: (context, url) => Container(
+                                      placeholder: (context, url) => Container(margin: EdgeInsets.only(right: 15).r,
                                         height: 50.h,
                                         width: 50.w,
                                         decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class WatchProviders extends ConsumerWidget {
                                         ),
                                       ),
                                       errorWidget: (context, url, error) =>
-                                          Container(
+                                          Container(margin: EdgeInsets.only(right: 15).r,
                                         height: 50.h,
                                         width: 50.w,
                                         decoration: BoxDecoration(
@@ -104,12 +104,9 @@ class WatchProviders extends ConsumerWidget {
                                           color: Colors.black,
                                         ),
                                       ),
-                                    ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                            ],
-                          );
+                                    );
+                             
+                          
                         }),
                   );
           },

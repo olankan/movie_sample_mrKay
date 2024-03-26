@@ -36,32 +36,35 @@ class MovieInfoHeader extends StatelessWidget {
                     key: Key(selectedMovie!.title),
                     height: 42.h,
                     width: 295.w,
-                    child: selectedMovie!.title.length > 16
-                        ? Marquee(
-                            text: selectedMovie!.title,
-                            style: TextStyle(
-                              fontFamily: fontFamily,
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
-                            blankSpace: 20.0,
-                            accelerationDuration: 200.ms,
-                            pauseAfterRound: 200.ms,
-                          ).animate().fadeIn(
-                            begin: 0.5,
-                            duration: 500.ms,
-                            curve: Curves.easeInOut)
-                        : //
+                    child:
+                        // selectedMovie!.title.length > 16
+                        //     ? Marquee(
+                        //         text: selectedMovie!.title,
+                        //         style: TextStyle(
+                        //           fontFamily: fontFamily,
+                        //           fontSize: 30.sp,
+                        //           fontWeight: FontWeight.w900,
+                        //           color: Colors.white,
+                        //         ),
+                        //         blankSpace: 20.0,
+                        //         accelerationDuration: 200.ms,
+                        //         pauseAfterRound: 200.ms,
+                        //       ).animate().fadeIn(
+                        //         begin: 0.5,
+                        //         duration: 500.ms,
+                        //         curve: Curves.easeInOut)
+                        //     : //
                         Text(
-                            selectedMovie!.title,
-                            style: TextStyle(
-                              fontSize: 30.sp,
-                              fontFamily: fontFamily,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
-                          ).animate().fadeIn(
+                      selectedMovie!.title,
+                      style: TextStyle(
+                        fontSize: 30.sp,
+                        fontFamily: fontFamily,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ).animate().fadeIn(
                             begin: 0.5,
                             duration: 500.ms,
                             curve: Curves.easeInOut)),
@@ -72,7 +75,7 @@ class MovieInfoHeader extends StatelessWidget {
               height: 5.h,
             ),
             SizedBox(
-              key: Key(selectedMovie!.genreId![0].toString()),
+              key: Key(selectedMovie!.genreId[0].toString()),
               height: 20.0.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -82,7 +85,6 @@ class MovieInfoHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 4).r,
                         height: 20.h,
                         width: null,
                         decoration: BoxDecoration(
@@ -91,8 +93,11 @@ class MovieInfoHeader extends StatelessWidget {
                             border: Border.all(
                               color: Colors.white,
                             )),
-                        child: Center(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 4.0).r,
                           child: Text(
+                            
                             GenreInfo().getGenreNameById(
                                 selectedMovie!.genreId[index]),
                             style: TextStyle(

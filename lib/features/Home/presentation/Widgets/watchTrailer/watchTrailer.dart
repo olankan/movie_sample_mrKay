@@ -30,27 +30,24 @@ class WatchTrailer extends ConsumerWidget {
         backgroundColor: Colors.black.withOpacity(0.3),
         child: Row(children: [
           SizedBox(width: 3.w),
-          Icon(
+          const Icon(
             Icons.play_circle_outline,
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white,
           )
               .animate()
               .fadeIn(
                 begin: 0.2,
-                duration: 2.5.seconds,
-              )
-              .then(delay: 1.seconds)
-              .shake(offset: const Offset(1, 0), duration: 1.seconds, hz: 2)
-              .fadeOut(
-                duration: 1.5.seconds,
+                duration: 1.seconds,
               ),
+              
+              
           SizedBox(
             width: 3.w,
           ),
           Text(
             'Watch Trailer',
             style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white,
                 fontSize: 12.sp,
                 fontFamily: fontFamily,
                 fontWeight: FontWeight.w500),
